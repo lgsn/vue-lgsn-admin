@@ -1,29 +1,30 @@
+/**
+ * @Description:
+ * @author Chen Jing
+ * @date 17:40 下午
+ * 路由配置
+*/
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
+import basicRouting from './basicRouting'
 
-Vue.use(VueRouter)
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+const originalReplace = Router.prototype.replace
+Router.prototype.replace = function replace(location) {
+  return originalReplace.call(this, location).catch(err => err)
+}
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+// 默认基础路由
+const routes = basicRouting
 
-const router = new VueRouter({
+Vue.use(Router)
+
+export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
-
-export default router
