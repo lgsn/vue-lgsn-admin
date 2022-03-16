@@ -5,7 +5,7 @@
     <!--左侧 logo 菜单-->
     <Aside :width="!collapsed ? '200px' : '60px'" class="basic-layout-sider">
 
-      <!--左侧 Logo 标题-->
+      <!--菜单顶部标题 logo-->
       <appMenuTitle :default-router="defaultPathUrl" :collapsed="collapsed" />
 
       <!--菜单-->
@@ -29,6 +29,7 @@
 
         <!--右侧操作栏-->
         <div class="layout-head-right">
+          <quickSwitch />
           <avatarCom :size="26" :info="userInfo" />
         </div>
 
@@ -63,6 +64,7 @@
   import { Aside, Breadcrumb, BreadcrumbItem } from 'element-ui'
   import BasicMenu from './BasicMenu'
   import NavTags from '../com/navTags'
+  import quickSwitch from '../com/quickSwitch'
   import appMenuTitle from '../com/appMenuTitle'
   import avatarCom from '../com/avatarCom'
   import { APP_NAME } from '@/config/public'
@@ -73,6 +75,7 @@
     components: {
       Aside,
       BasicMenu: BasicMenu,
+      quickSwitch,
       avatarCom,
       appMenuTitle,
       Breadcrumb,
@@ -91,7 +94,7 @@
       }
     },
     computed: {
-      ...mapGetters(['userInfo', 'userMenu', 'defaultPath'])
+      ...mapGetters(['userInfo'])
     },
     watch: {
       $route(route) {
@@ -114,18 +117,18 @@
       },
       // 初始化历史标签
       initTag() {
-        const allView = this.$route
-        if (!allView.meta || !allView.meta.name) return
-        if (this.tagViews.some(v => v.path === allView.path)) {
-          this.currentTag = allView.meta.name
+        const currentRoute = this.$route
+        if (!currentRoute.meta || !currentRoute.meta.title) return
+        if (this.tagViews.some(v => v.path === currentRoute.path)) {
+          this.currentTag = currentRoute.meta.title
           return
         }
         this.tagViews.push(
-          Object.assign({}, allView, {
-            name: allView.meta.name || 'no-name'
+          Object.assign({}, currentRoute, {
+            name: currentRoute.meta.title || '未知菜单'
           })
         )
-        this.currentTag = allView.meta.name
+        this.currentTag = currentRoute.meta.title
       },
       // 展开/收缩菜单
       toggleCollapsed() {

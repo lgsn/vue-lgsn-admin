@@ -2,29 +2,18 @@
 <template>
 
   <!--只读模式-->
-  <div v-if="readOnly">
-    <img
-        v-if="!border"
-        :src="value"
-        alt=""
-        :style="{
-          width: `${customSize ? customSize.width : size}px`,
-          height: `${customSize ? customSize.height : size}px`,
-          borderRadius: border ? '50%' : '4px'
-        }"
+  <div v-if="readOnly" class="read-only-avatar">
+    <div
+      :class="`g-avatar-${shape}`"
+      :style="{ width: `${size}px`, height: `${size}px` }"
     >
-    <Avatar
-        v-else-if="value"
-        :size="size"
-        :src="value"
-    />
-    <Avatar
-        v-else
-        :size="size"
-        :style="{background: 'rgb(33, 133, 240)', color: '#fff', fontWeight: 'bold', fontSize: `${fontSize}px`}"
-    >
-      {{ !value && avatarText ? avatarText.substr(0, 1) : 'G' }}
-    </Avatar>
+
+      <img v-if="value" :src="value" alt="">
+
+      <slot v-else />
+
+    </div>
+
   </div>
 
   <!--可编辑-->
@@ -42,8 +31,7 @@
 
     <Upload
         name="image"
-        :multiple="multiple"
-        :action="uploadFileSrc"
+        :action="ossUpload"
         :show-file-list="false"
         :before-upload="beforeUpload"
         :accept="accept"
@@ -88,8 +76,9 @@
 
 <script>
   import { Avatar, Upload } from 'element-ui'
+  import { ossUpload } from '@/api/public'
   export default {
-    name: 'GUploadImg',
+    name: 'GAvatar',
     components: {
       Avatar,
       Upload
@@ -100,30 +89,25 @@
         type: String,
         default: ''
       },
-      // !value 展示文字内容
-      avatarText: {
-        type: String,
-        default: ''
-      },
-      // !value 文字大小
-      fontSize: {
-        type: Number,
-        default: 18
-      },
-      // 图片大小
-      size: {
-        type: Number,
-        default: 36
-      },
-      // 多选
-      multiple: {
-        type: Boolean,
-        default: false
-      },
       // 是否只读
       readOnly: {
         type: Boolean,
         default: false
+      },
+      // 形状
+      shape: {
+        type: String,
+        default: 'circle'
+      },
+      // 大小
+      size: {
+        type: Number,
+        default: 28
+      },
+      // !value 展示文字内容
+      avatarText: {
+        type: String,
+        default: ''
       },
       // 是否开始展示位圆
       border: {
@@ -148,7 +132,7 @@
     },
     data() {
       return {
-        uploadFileSrc: 'TODO: 上传文件地址',
+        ossUpload,
         uploadLoad: false
       }
     },
@@ -248,5 +232,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .read-only-avatar{
+    &>div{
+      background: rgb(33, 133, 240);
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .g-avatar-circle{
+      border-radius: 50%;
+    }
+    .g-avatar-square{
+      border-radius: 4px;
+    }
   }
 </style>

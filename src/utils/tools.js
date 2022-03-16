@@ -14,15 +14,15 @@ export function routerComponents(asyncRouterMap, routeRights, parentId) {
   const routeMap = routeRights || new Map()
   return asyncRouterMap.filter(v => v.component).map(route => {
     const item = {}
-    routeMap.set(route.path, { rights: route.rights })
-    if (route.component && route.rights) {
+    routeMap.set(route.path, { per: route.per })
+    if (route.component && route.per) {
       const component = route.component
       item.path = `${route.path}`
       item.name = route.path
       if (route.component === 'layout') {
         item.component = RouteView
       } else {
-        item.component = () => import(`@/${component}.vue`)
+        item.component = () => import(`@/views${component}.vue`)
       }
       item.meta = {
         name: route.name,
@@ -46,6 +46,7 @@ export function arrayToMap(data, key = 'configCode', value = 'configVal') {
   }
   return info
 }
+
 // 合并数组
 export function mergeArray(data, newData) {
   data.forEach(v => {
@@ -54,7 +55,7 @@ export function mergeArray(data, newData) {
         if (newData[i].children && newData[i].children.length) {
           mergeArray(data, newData[i].children)
         }
-        v.rights = true
+        v.per = true
         break
       }
     }

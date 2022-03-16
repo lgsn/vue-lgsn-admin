@@ -41,7 +41,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userMenu', 'userInfo', 'defaultPath'])
+    ...mapGetters(['userInfo', 'defaultPath'])
   },
   created() {
     this.defaultRouter = this.defaultPath

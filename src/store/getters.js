@@ -6,8 +6,8 @@
  */
 
 export default {
-  userMenu: state => state.userStore.userMenu,
-  defaultPath: state => state.userStore.defaultPath,
-  userRights: state => state.userStore.userRights,
-  routeRightsMap: state => state.permissionStore.routeRightsMap
+  routes: state => state.permission.routes,
+  defaultPath: state => state.permission.defaultPath,
+  directivePer: state => state.permission.directivePer,
+  routeRightsMap: state => state.permission.routeRightsMap
 }

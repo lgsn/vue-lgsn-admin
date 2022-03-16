@@ -47,8 +47,7 @@ Vue.directive('copy', {
  */
 Vue.directive('rights', {
   inserted: function(el, binding) {
-    const userRights = store.getters.userRights
-    if (!userRights.get(binding.value)) {
+    if (!store.getters.directivePer.get(binding.value)) {
       el.parentNode.removeChild(el)
     }
   }

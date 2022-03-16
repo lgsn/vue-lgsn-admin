@@ -3,9 +3,23 @@
   <div class="avatar-com">
 
     <Popover trigger="click" @show="visible = true" @after-leave="visible = false">
+
       <div class="avatar-popover-content">
+
         <div class="avatar-com-header">
-          <GUploadImg v-model="info.headImg" :read-only="true" :border="true" class="avatar-com-header-img" :size="36" :font-size="18" :avatar-text="info.userName" @click="visible = true" />
+
+          <GAvatar
+              v-model="info.avatarImg"
+              :read-only="true"
+              :size="38"
+              @click="visible = true"
+          >
+            <span v-if="!info.avatarImg && info.userName">
+              {{ info.userName.substr(0, 1) }}
+            </span>
+
+          </GAvatar>
+
           <span class="user-name">{{ info.userName }}</span>
         </div>
         <ul>
@@ -21,9 +35,17 @@
       </div>
 
       <div slot="reference" class="shw-avatar">
-        <GUploadImg v-model="info.headImg" :read-only="true" :border="true" :avatar-text="info.userName" :font-size="18" :size="size" class="avatar-com-img" @click="visible = true" />
-        <span class="user-name">{{ info.userName }}</span>
-        <GIcon class="show-avatar-icon" :icon="visible ? 'icon-xiajiantou' : 'icon-shangjiantou'" />
+        <GAvatar
+          v-model="info.avatarImg"
+          :read-only="true"
+          @click="visible = true"
+        >
+          <span v-if="!info.avatarImg && info.userName">
+            {{ info.userName.substr(0, 1) }}
+          </span>
+        </GAvatar>
+        <span>{{ info.userName }}</span>
+        <GIcon class="show-avatar-icon" :class="{ 'show-avatar-icon-down': visible }" icon="icon-xiajiantou" />
       </div>
 
     </Popover>
@@ -36,13 +58,13 @@
 
 <script>
   import { Popover } from 'element-ui'
-  import GUploadImg from '@/components/GUploadImg'
+  import GAvatar from '@/components/GAvatar'
   import editorPwd from './editorPwd'
   export default {
     name: 'AvatarCom',
     components: {
       Popover,
-      GUploadImg,
+      GAvatar,
       editorPwd
     },
     props: {
@@ -94,44 +116,41 @@
     .shw-avatar{
       display: flex;
       align-items: center;
-      height: inherit;
-      .user-name{
-        display: inline-block;
-        margin-left: 8px;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 40px;
+      height: inherit;font-weight: 600;
+      font-size: 14px;
+      line-height: 40px;
+      color: #303133;
+      &>span{
+        margin-left: 10px;
       }
     }
     .show-avatar-icon{
-      transition: all .3s;
+      transition: all .4s;
       font-size: 13px;
       margin-left: 8px;
       color: #37414b;
+    }
+    .show-avatar-icon-down{
+      transform: rotate(180deg);
     }
   }
   .avatar-popover-content {
     min-width: 200px;
     .avatar-com-header {
-      padding: 0 16px;
+      padding: 12px;
       display: flex;
       align-items: center;
       flex-wrap: nowrap;
       border-bottom: solid 1px rgba(23, 35, 61, 0.1);
       cursor: pointer;
-      .avatar-com-header-img {
-        margin-right: 16px;
-      }
       .user-name{
+        margin-left: 12px;
         font-size: 16px;
         font-weight: 600;
-        height: 63px;
-        line-height: 68px;
         flex: 1;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        color: var(--titleColor);
       }
     }
     ul{
@@ -147,7 +166,7 @@
         span {
         }
         & > .icon{
-          width: 68px;
+          width: 54px;
           font-size: 20px;
           color: #909194;
         }

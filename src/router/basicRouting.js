@@ -19,8 +19,8 @@ export default [
     component: () => import('@/views/login')
   },
   {
-    path: '/error',
-    name: 'error',
+    path: '/404',
+    name: '404',
     component: () => import('@/views/pmsPage/404')
   },
   {

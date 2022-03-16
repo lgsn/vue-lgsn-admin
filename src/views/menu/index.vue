@@ -1,8 +1,6 @@
 <template>
   <div class="test-page">
-    <div class="global-view-card">
-      <p class="global-title">当看到此页面，恭喜你项目启动成功</p>
-    </div>
+    123123
   </div>
 </template>
 

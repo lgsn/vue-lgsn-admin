@@ -3,7 +3,6 @@
   <div class="basic-menu">
 
     <Menu
-        v-model="menus"
         class="menu-item"
         mode="vertical"
         :collapse="collapsed"
@@ -11,24 +10,24 @@
         @select="openView"
     >
 
-      <template v-for="menu in userMenu">
+      <template v-for="menu in routes">
 
         <!--一级菜单-->
         <MenuItem v-if="!menu.children || !menu.children.length" :key="menu.path" :index="menu.path">
-          <GIcon class="menu-icon anticon" :icon="menu.icon" />
-          <span>{{ menu.name }}</span>
+          <GIcon v-if="menu.meta.icon" class="menu-icon anticon" :icon="menu.meta.icon" />
+          <span>{{ menu.meta.title }}</span>
         </MenuItem>
 
         <!--包含子菜单-->
-        <Submenu v-else :key="menu.id" :index="menu.path">
+        <Submenu v-else :key="menu.path" :index="menu.path">
 
           <template slot="title">
-            <GIcon class="menu-icon anticon" :icon="menu.icon" />
-            <span>{{ menu.name }}</span>
+            <GIcon class="menu-icon anticon" :icon="menu.meta.icon" />
+            <span>{{ menu.meta.title }}</span>
           </template>
 
           <MenuItem v-for="menuChildren in menu.children" :key="menuChildren.path" :index="menuChildren.path">
-            {{ menuChildren.name }}
+            {{ menuChildren.meta.name }}
           </MenuItem>
 
         </Submenu>
@@ -58,21 +57,14 @@
     },
     data() {
       return {
-        menus: [],
         defaultActive: ''
       }
     },
     computed: {
-      ...mapGetters(['userMenu'])
-    },
-    watch: {
-      $route() {
-        this.menus = [this.$route.name]
-      }
+      ...mapGetters(['routes'])
     },
     created() {
-      this.menus = [this.$route.name]
-      this.defaultActive = this.$route.name
+      this.defaultActive = this.$route.path
     },
     methods: {
       openView(index) {
