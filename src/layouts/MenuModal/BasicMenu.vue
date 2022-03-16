@@ -27,7 +27,8 @@
           </template>
 
           <MenuItem v-for="menuChildren in menu.children" :key="menuChildren.path" :index="menuChildren.path">
-            {{ menuChildren.meta.name }}
+            <GIcon v-if="menuChildren.meta.icon" class="menu-icon anticon" :icon="menuChildren.meta.icon" />
+            <span>{{ menuChildren.meta.title }}</span>
           </MenuItem>
 
         </Submenu>
@@ -78,6 +79,7 @@
 <style lang="scss" scoped>
   .basic-menu{
     flex: 1 1 0;
+    height: calc(100% - 64px);
     overflow: hidden auto;
     .menu-item{
       .menu-icon{
@@ -91,19 +93,16 @@
       width: 200px;
       min-height: 400px;
     }
-    .is-active{
-      background-color: #5482ee;
-      color: #e7f4ff;
-      .menu-icon{
-        color: #e7f4ff;
-      }
-    }
-    .el-submenu{
-      background-color: #fff;
-      color: #303133;
-    }
     ::v-deep{
+      .el-menu-item.is-active{
+          background-color: #5482ee;
+          color: #e7f4ff;
+          .menu-icon{
+            color: #e7f4ff;
+          }
+      }
       .el-submenu__title{
+        color: #333;
         i{
           opacity: .45;
           color: #37414b;
@@ -111,16 +110,8 @@
         }
       }
     }
-    .is-opened{
-      ::v-deep{
-        .el-submenu__title{
-          i{
-            opacity: 1;
-          }
-        }
-      }
-    }
   }
+
   .el-menu--popup{
     .is-active{
       background-color: #5482ee;
@@ -129,5 +120,22 @@
         color: #fff;
       }
     }
+  }
+
+  .basic-menu::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    opacity: 0.2;
+  }
+  .basic-menu::-webkit-scrollbar-track-piece {
+    -webkit-border-radius: 0;
+    opacity: 0.2;
+  }
+  .basic-menu::-webkit-scrollbar-thumb:vertical {
+    height: 0;
+    -webkit-border-radius: 0;
+  }
+  .basic-menu::-webkit-scrollbar-thumb:horizontal {
+    width: 0;
   }
 </style>

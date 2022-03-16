@@ -155,6 +155,7 @@
       z-index: 20;
       box-shadow: 10px 0 10px -10px #c7c7c7;
       transition: all .3s;
+      overflow: hidden;
       .basic-layout-sider-footer {
         height: 48px;
         line-height: 48px;
@@ -165,6 +166,7 @@
       }
     }
     .basic-layout-right{
+      width: calc(100% - 200px);
       display: flex;
       flex: auto;
       flex-direction: column;
@@ -199,8 +201,9 @@
       color: #fff;
     }
     .layout-content{
-      flex: auto;
-      min-height: auto;
+      width: 100%;
+      background-color: #f0f2f5;
+      overflow-y: auto;
     }
     .layout-head{
       padding: 0;
@@ -215,6 +218,7 @@
         padding: 0;
         user-select: none;
         outline: none;
+        box-shadow: 2px 0 7px 0 rgb(153, 170, 192);
       }
       .menu-breadcrumb{
         line-height: 48px;
@@ -234,6 +238,7 @@
         display: flex;
         align-items: center;
         height: 40px;
+        z-index: 101;
       }
     }
     .menu-icon-collapsed{

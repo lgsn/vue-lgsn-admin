@@ -1,19 +1,21 @@
 <!--导航栏 标签-->
 <template>
-  <div class="nav-tag">
-    <div class="nav-tags">
-      <div
-        v-for="(item, index) in tags"
-        :key="index"
-        class="tag-item"
-        :class="{'tag-active': currentTag === item.name}"
-        @click="triggerTas(item)"
-      >
-        <div class="tab-dividers"></div>
-        <div class="tab-background"><tabSvg /></div>
-        <div class="tab-content">
-          <div class="tab-content-name">{{ item.name }}</div>
-          <i v-if="tags.length > 1" class="el-icon-close" type="close" @click.stop="delTag(index)" />
+  <div class="nav-tag-content">
+    <div class="nav-tag">
+      <div class="nav-tags">
+        <div
+            v-for="(item, index) in tags"
+            :key="index"
+            class="tag-item"
+            :class="{'tag-active': currentTag === item.name}"
+            @click="triggerTas(item)"
+        >
+          <div class="tab-dividers"></div>
+          <div class="tab-background"><tabSvg /></div>
+          <div class="tab-content">
+            <div class="tab-content-name">{{ item.name }}</div>
+            <i v-if="tags.length > 1" class="el-icon-close" type="close" @click.stop="delTag(index)" />
+          </div>
         </div>
       </div>
     </div>
@@ -52,11 +54,17 @@ export default {
 </script>
 
 <style lang="scss">
+  .nav-tag-content{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    z-index: 100;
+    background-color: #f0f2f5;
+  }
   .nav-tag{
     width: calc(100% - 220px);
     position: relative;
     height: 40px;
-    background: #f0f2f5;
   }
   .nav-tags {
     display: flex;
@@ -153,7 +161,7 @@ export default {
         }
       }
       &:hover{
-         z-index: 3;
+        z-index: 3;
         .tab-background {
           opacity: 1;
           svg{

@@ -17,7 +17,7 @@ export const quickAppLinks = [
 ]
 
 // 系统名称
-export const APP_NAME = 'Element-pro'
+export const APP_NAME = 'Element-Pro'
 
 // 系统LOGO
-export const APP_LOGO = ''
+export const APP_LOGO = 'https://cn.vuejs.org/images/logo.svg'
