@@ -6,7 +6,7 @@
 */
 import Vue from 'vue'
 import Router from 'vue-router'
-import basicRouting from './basicRouting'
+import routes from '@/config/config.router'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location, onResolve, onReject) {
@@ -17,9 +17,6 @@ const originalReplace = Router.prototype.replace
 Router.prototype.replace = function replace(location) {
   return originalReplace.call(this, location).catch(err => err)
 }
-
-// 默认基础路由
-const routes = basicRouting
 
 Vue.use(Router)
 

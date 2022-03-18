@@ -1,7 +1,6 @@
 import router from './router'
 import Cookies from 'js-cookie'
 import store from './store'
-import { dynamicRouting } from './config/public'
 
 // 页面白名单
 const whiteRoutes = ['login', 'error', 'exception', 'fault']
@@ -12,7 +11,7 @@ router.beforeEach(async(to, from, next) => {
   // 白名单不需要登录
   if (whiteRoutes.includes(to.name)) {
     next()
-  } else if (Cookies.get('token')) {
+  } else if (Cookies.get('userToken')) {
 
     // 登录状态下 无需再次登陆 跳转到默认页
     if (to.name === loginRouteName) {
@@ -35,11 +34,11 @@ router.beforeEach(async(to, from, next) => {
          */
         const routes = await store.dispatch('permission/generateRoutes', responseRouters)
         // 注册路由
-        router.addRoute({
-          name: dynamicRouting,
-          path: `/${dynamicRouting}`,
-          component: () => import(`@/layouts/BasicLayout.vue`),
-          children: routes
+        routes.unshift(
+            { path: '*', redirect: '/404', hidden: true }
+        )
+        routes.forEach(v => {
+          router.addRoute('/', v)
         })
         next({ ...to, replace: true })
       }

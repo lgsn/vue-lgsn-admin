@@ -87,7 +87,7 @@
    * 表格区域 默认带有分页
    **/
   export default {
-    name: 'GPageCard',
+    name: 'GBusiness',
     props: {
       // 总条数
       total: {

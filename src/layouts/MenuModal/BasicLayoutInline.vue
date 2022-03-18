@@ -48,11 +48,9 @@
       </div>
 
       <!--内容-->
-      <div class="layout-content">
-
-        <router-view />
-
-      </div>
+      <transition name="slide-fade" mode="out-in">
+        <router-view class="layout-content" />
+      </transition>
 
     </div>
 
@@ -203,7 +201,7 @@
     .layout-content{
       width: 100%;
       background-color: #f0f2f5;
-      overflow-y: auto;
+      overflow: hidden;
     }
     .layout-head{
       padding: 0;
@@ -255,5 +253,17 @@
         background-image: -webkit-gradient(linear,left top,right top,from(#ddd),to(transparent))
       }
     }
+  }
+
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .3s;
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
   }
 </style>
