@@ -1,5 +1,7 @@
 <template>
   <GBusiness
+    :tableColumn="tableColumn"
+    :tableData="tableData"
   >
 
     <template slot="filter">
@@ -13,6 +15,10 @@
       </el-form>
     </template>
 
+    <template slot="edit">
+      <el-button type="primary" @click="lockDetail">详情</el-button>
+    </template>
+
   </GBusiness>
 </template>
 
@@ -22,6 +28,19 @@
     name: 'index',
     components: {
       GBusiness
+    },
+    data() {
+      return {
+        tableColumn: [
+          { label: '操作', prop: 'edit', slotTemplate: 'edit' }
+        ],
+        tableData: [1]
+      }
+    },
+    methods: {
+      lockDetail() {
+        this.$router.push('details')
+      }
     }
   };
 </script>

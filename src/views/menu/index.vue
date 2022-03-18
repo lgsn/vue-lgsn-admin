@@ -1,6 +1,6 @@
 <template>
   <div class="test-page">
-    123123
+    菜单
   </div>
 </template>
 

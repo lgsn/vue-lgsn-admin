@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     openView(item) {
-      console.log(item)
+      this.$route.push(item.link)
     }
   }
 }

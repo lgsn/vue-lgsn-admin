@@ -1,22 +1,10 @@
 export default [
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/views/login')
-    },
-    {
-        path: '/404',
-        name: '404',
-        component: () => import('@/views/pmsPage/404')
-    },
-    {
-        path: '/exception',
-        name: 'exception',
-        component: () => import('@/views/pmsPage/403')
-    },
-    {
-        path: '/fault',
-        name: 'fault',
-        component: () => import('@/views/pmsPage/502')
+        'name': 'details',
+        'path': '/details',
+        component: '/business/businessDetails',
+        hideMenu: true,
+        activeMenu: 'business',
+        meta: { title: '详情页', 'icon': 'icon-tongjifenxi' },
     }
 ]

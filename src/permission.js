@@ -18,9 +18,8 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
     } else {
       const isGetMenu = store.state.permission.isGetMenu
-
       if (isGetMenu) {
-        if (to.name === 'dynamicRouting') {
+        if (!to.name || to.path === '/') {
             // 是否在访问动态路由
             next(store.state.permission.defaultPath)
         } else {
@@ -34,11 +33,8 @@ router.beforeEach(async(to, from, next) => {
          */
         const routes = await store.dispatch('permission/generateRoutes', responseRouters)
         // 注册路由
-        routes.unshift(
-            { path: '*', redirect: '/404', hidden: true }
-        )
         routes.forEach(v => {
-          router.addRoute('/', v)
+          router.addRoute(v)
         })
         next({ ...to, replace: true })
       }

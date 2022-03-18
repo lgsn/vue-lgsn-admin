@@ -9,8 +9,8 @@
       <p>404</p>
       <span>抱歉，您查看的页面不存在～～</span>
       <div class="error-desc-btn">
-        <el-button size="large" @click="() => { this.$router.push('/') }">返回首页</el-button>
-        <el-button type="primary" size="large" @click="() => { this.$router.go(-2) }">返回上页</el-button>
+        <el-button size="large" @click="() => { $router.push(defaultPath) }">返回首页</el-button>
+        <!--<el-button type="primary" size="large" @click="backUp">返回上页</el-button>-->
       </div>
     </div>
 
@@ -18,10 +18,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'ErrorView',
   created() {
     this.$setWebSite({ title: `404` })
+  },
+  computed: {
+    ...mapGetters(['defaultPath'])
   }
 }
 </script>

@@ -5,6 +5,7 @@
  * 路由表
  */
 import { routerFormat } from '@/utils/router'
+import localRoutes from '@/config/config.router.js'
 
 export default {
   namespaced: true,
@@ -20,16 +21,13 @@ export default {
     isGetMenu: false
   },
   mutations: {
-    setRoutes: (state, routes) => {
-      const defaultPage = routes && routes.length ? routes[0] : {}
-      state.defaultPath = defaultPage.children.length ? defaultPage.children[0].path : defaultPage.path
-      state.routes = routes
-    },
     setRouteRightsMap: (state, routes) => {
       state.routeRightsMap = routes
     },
-    setIsGetMenu: (state, flag) => {
-      state.isGetMenu = flag
+    setIsGetMenu: (state, data) => {
+      state.routes = data.routes
+      state.defaultPath = data.defaultPath
+      state.isGetMenu = data.flag
     }
   },
   actions: {
@@ -38,9 +36,28 @@ export default {
       return new Promise(resolve => {
 
         // 转换路由数据格式
-        const routes = routerFormat(data)
-        commit('setRoutes', routes)
-        commit('setIsGetMenu', true)
+        let routes = routerFormat([ ...data, ...localRoutes])
+        const layoutRoute = routes.filter(v => !v.layout)
+        const customizeLayout = routes.filter(v => v.layout)
+
+        // 默认地址
+        const defaultPage = routes && routes.length ? routes[0] : {}
+        const defaultPath = defaultPage.children.length ? defaultPage.children[0].path : defaultPage.path
+
+        commit('setIsGetMenu', { routes, defaultPath, flag: true })
+
+        routes = [
+          {
+            path: '/',
+            name: '',
+            reject: defaultPath,
+            component: () => import('@/layouts/BasicLayout'),
+            children: layoutRoute
+          },
+          ...customizeLayout,
+          { path: '*', redirect: '/404' }
+        ]
+
         resolve(routes)
       })
     }

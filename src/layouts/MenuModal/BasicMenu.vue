@@ -10,30 +10,7 @@
         @select="openView"
     >
 
-      <template v-for="menu in routes">
-
-        <!--一级菜单-->
-        <MenuItem v-if="!menu.children || !menu.children.length" :key="menu.path" :index="menu.path">
-          <GIcon v-if="menu.meta.icon" class="menu-icon anticon" :icon="menu.meta.icon" />
-          <span>{{ menu.meta.title }}</span>
-        </MenuItem>
-
-        <!--包含子菜单-->
-        <Submenu v-else :key="menu.path" :index="menu.path">
-
-          <template slot="title">
-            <GIcon class="menu-icon anticon" :icon="menu.meta.icon" />
-            <span>{{ menu.meta.title }}</span>
-          </template>
-
-          <MenuItem v-for="menuChildren in menu.children" :key="menuChildren.path" :index="menuChildren.path">
-            <GIcon v-if="menuChildren.meta.icon" class="menu-icon anticon" :icon="menuChildren.meta.icon" />
-            <span>{{ menuChildren.meta.title }}</span>
-          </MenuItem>
-
-        </Submenu>
-
-      </template>
+      <BasicMenuItem v-for="menu in routes" :menu="menu" :key="menu.name" />
 
     </Menu>
 
@@ -41,14 +18,14 @@
 </template>
 
 <script type="jsx">
-  import { Menu, MenuItem, Submenu } from 'element-ui'
+  import { Menu } from 'element-ui'
+  import BasicMenuItem from './BasicMenuItem'
   import { mapGetters } from 'vuex'
   export default {
     name: 'BasicMenu',
     components: {
       Menu,
-      Submenu,
-      MenuItem
+      BasicMenuItem
     },
     props: {
       collapsed: {
@@ -64,19 +41,24 @@
     computed: {
       ...mapGetters(['routes'])
     },
+    watch: {
+      '$route': function () {
+        this.defaultActive = this.$route.meta.activeMenu || this.$route.name
+      }
+    },
     created() {
-      this.defaultActive = this.$route.path
+      this.defaultActive = this.$route.name
     },
     methods: {
-      openView(index) {
-        if (index === this.$route.name) return
-        this.$router.replace({ path: index })
+      openView(routeName) {
+        if (routeName === this.$route.name) return
+        this.$router.push(routeName)
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .basic-menu{
     flex: 1 1 0;
     height: calc(100% - 64px);
@@ -93,21 +75,19 @@
       width: 200px;
       min-height: 400px;
     }
-    ::v-deep{
-      .el-menu-item.is-active{
-          background-color: #5482ee;
-          color: #e7f4ff;
-          .menu-icon{
-            color: #e7f4ff;
-          }
+    .el-menu-item.is-active{
+      background-color: #5482ee;
+      color: #e7f4ff;
+      .menu-icon{
+        color: #e7f4ff;
       }
-      .el-submenu__title{
-        color: #333;
-        i{
-          opacity: .45;
-          color: #37414b;
-          font-weight: bold;
-        }
+    }
+    .el-submenu__title{
+      color: #333;
+      i{
+        opacity: .45;
+        color: #37414b;
+        font-weight: bold;
       }
     }
   }

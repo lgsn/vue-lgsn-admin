@@ -7,13 +7,13 @@
             v-for="(item, index) in tags"
             :key="index"
             class="tag-item"
-            :class="{'tag-active': currentTag === item.name}"
+            :class="{'tag-active': currentTag === item.meta.title}"
             @click="triggerTas(item)"
         >
           <div class="tab-dividers"></div>
           <div class="tab-background"><tabSvg /></div>
           <div class="tab-content">
-            <div class="tab-content-name">{{ item.name }}</div>
+            <div class="tab-content-name">{{ item.meta.title }}</div>
             <i v-if="tags.length > 1" class="el-icon-close" type="close" @click.stop="delTag(index)" />
           </div>
         </div>
@@ -43,7 +43,7 @@ export default {
   methods: {
     triggerTas(item) {
       if (item.name === this.$route.name) return
-      this.$router.push(item.path)
+      this.$router.push(item.name)
     },
     // 删除标签视图
     delTag(index) {

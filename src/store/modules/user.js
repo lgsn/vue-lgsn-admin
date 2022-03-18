@@ -22,11 +22,13 @@ const actions = {
         'userId': 'admin',
         'userName': 'admin'
       })
-      resolve([
+
+      const asyncRouters = [
         {
           name: 'dashboard',
           path: '/dashboard',
           component: '/dashboard/index',
+          layout: true,
           meta: { title: '首页', 'icon': 'icon-shezhi' },
         },
         {
@@ -56,12 +58,6 @@ const actions = {
           meta: { title: '外链菜单', 'icon': 'icon-tongjifenxi' },
         },
         {
-          'name': 'details',
-          'path': '/details',
-          component: '/menu/index',
-          meta: { title: '详情页', 'icon': 'icon-tongjifenxi' },
-        },
-        {
           'name': 'components',
           'path': '/components',
           component: '/menu/index',
@@ -70,13 +66,13 @@ const actions = {
           },
           children: [
             {
-              'name': 'avatar', 'path': '/avatar', component: '/menu/index', meta: { title: '头像', 'icon': '' }
+              'name': 'avatar', 'path': '/avatar', component: '/menu/index', meta: { title: '头像' }
             },
             {
               'name': 'Icon', 'path': '/icon', component: '/menu/index', meta: { title: '图标', 'icon': '' }
             },
             {
-              'name': 'editButton', 'path': '/editButton', component: '/menu/index', meta: { title: '操作按钮', 'icon': '' }
+              'name': 'editButton', 'path': '/editButton', component: '/menu/index', meta: { title: '操作按钮' }
             },
             {
               'name': 'pagination', 'path': '/pagination', component: '/menu/index', meta: { title: '分页', 'icon': '' }
@@ -98,7 +94,8 @@ const actions = {
           component: '/menu/index',
           meta: { title: '指令权限', 'icon': 'icon-tongjifenxi' },
         },
-      ])
+      ]
+      resolve(asyncRouters)
     })
   },
 

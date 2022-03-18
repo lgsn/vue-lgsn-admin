@@ -51,7 +51,7 @@
     </Popover>
 
     <!--修改密码-->
-    <editorPwd v-model="isEditorPwd" />
+    <editorPwd :visible.sync="isEditorPwd" />
 
   </div>
 </template>

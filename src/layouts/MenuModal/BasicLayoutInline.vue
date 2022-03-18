@@ -61,10 +61,10 @@
 <script>
   import { Aside, Breadcrumb, BreadcrumbItem } from 'element-ui'
   import BasicMenu from './BasicMenu'
-  import NavTags from '../com/navTags'
-  import quickSwitch from '../com/quickSwitch'
-  import appMenuTitle from '../com/appMenuTitle'
-  import avatarCom from '../com/avatarCom'
+  import NavTags from '../component/navTags'
+  import quickSwitch from '../component/quickSwitch'
+  import appMenuTitle from '../component/appMenuTitle'
+  import avatarCom from '../component/avatarCom'
   import { APP_NAME } from '@/config/public'
   import { mapGetters } from 'vuex'
 
@@ -122,9 +122,7 @@
           return
         }
         this.tagViews.push(
-          Object.assign({}, currentRoute, {
-            name: currentRoute.meta.title || '未知菜单'
-          })
+          Object.assign({}, currentRoute)
         )
         this.currentTag = currentRoute.meta.title
       },

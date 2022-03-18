@@ -17,9 +17,15 @@ import {
   Loading,
   Form,
   FormItem,
-  MessageBox
+  MessageBox,
+  Table,
+  TableColumn,
+  Pagination
 } from 'element-ui'
 
+Vue.use(Pagination)
+Vue.use(Table)
+Vue.use(TableColumn)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Button)

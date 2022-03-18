@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import appMenuTitle from '../com/appMenuTitle'
-import avatarCom from '../com/avatarCom'
+import appMenuTitle from '../component/appMenuTitle'
+import avatarCom from '../component/avatarCom'
 import BasicMenu from './BasicMenu'
 import { mapGetters } from 'vuex'
 export default {

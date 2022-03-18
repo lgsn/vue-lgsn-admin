@@ -3,7 +3,7 @@
   <Dialog
     title="修改密码"
     width="500px"
-    :visible.sync="value"
+    :visible.sync="show"
     append-to-body
     center
     @closed="handleCancel"
@@ -46,7 +46,7 @@
     </el-form>
 
     <span slot="footer">
-      <el-button @click="handleCancel">取 消</el-button>
+      <el-button @click="() => { $emit('update:visible', false) }">取 消</el-button>
       <el-button type="primary" v-loading="confirmLoading" @click="handleOk">保 存</el-button>
     </span>
 
@@ -61,9 +61,19 @@ export default {
     Dialog
   },
   props: {
-    value: {
+    visible: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    show: {
+      get() {
+        return this.visible
+      },
+      set(value) {
+        this.$emit('update:visible', value)
+      }
     }
   },
   data() {
@@ -99,7 +109,7 @@ export default {
       })
     },
     handleCancel() {
-      this.$emit('input', false)
+      this.$emit('update:visible', false)
     },
     // 校验密码是否一致
     isPwdConsistent(rule, value, callback) {

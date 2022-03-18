@@ -6,7 +6,6 @@
 */
 import Vue from 'vue'
 import Router from 'vue-router'
-import routes from '@/config/config.router'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location, onResolve, onReject) {
@@ -23,5 +22,26 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/login')
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('@/views/pmsPage/404')
+    },
+    {
+      path: '/exception',
+      name: 'exception',
+      component: () => import('@/views/pmsPage/403')
+    },
+    {
+      path: '/fault',
+      name: 'fault',
+      component: () => import('@/views/pmsPage/502')
+    }
+  ]
 })
