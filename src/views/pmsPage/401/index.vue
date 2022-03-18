@@ -6,8 +6,8 @@
     </div>
 
     <div class="error-desc">
-      <p>403</p>
-      <span>抱歉，您暂无权限～～</span>
+      <p>401</p>
+      <span>抱歉，暂无权限访问 ～～ 请联系管理员</span>
       <div class="error-desc-btn">
         <el-button size="large" @click="() => { this.$router.push('/') }">返回首页</el-button>
         <el-button type="primary" size="large" @click="() => { this.$router.go(-2) }">返回上页</el-button>
@@ -50,7 +50,7 @@ export default {
         display: block;
         margin-bottom: 36px;
         font-size: 24px;
-        color: var(--secondaryColor);
+        color: #909399;
       }
       .error-desc-btn{
         display: flex;

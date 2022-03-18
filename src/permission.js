@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import store from './store'
 
 // 页面白名单
-const whiteRoutes = ['login', 'error', 'exception', 'fault']
+const whiteRoutes = ['login', '404', '401', '500']
 // 登录页地址
 const loginRouteName = 'login'
 
@@ -20,12 +20,14 @@ router.beforeEach(async(to, from, next) => {
       const isGetMenu = store.state.permission.isGetMenu
       if (isGetMenu) {
         if (!to.name || to.path === '/') {
-            // 是否在访问动态路由
-            next(store.state.permission.defaultPath)
+          // 是否在访问动态路由
+          next(store.state.permission.defaultPath)
+        } else if (to.meta.onAccess) {
+          next('401')
         } else {
           next()
         }
-      }else {
+      } else {
         // 获取菜单
         const responseRouters = await store.dispatch('getUserInfo')
         /**

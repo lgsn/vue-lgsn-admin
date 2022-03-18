@@ -52,7 +52,7 @@ export default {
         display: block;
         margin-bottom: 36px;
         font-size: 24px;
-        color: var(--secondaryColor);
+        color: #909399;
       }
       .error-desc-btn{
         display: flex;

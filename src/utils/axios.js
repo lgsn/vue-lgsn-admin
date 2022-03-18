@@ -61,7 +61,7 @@ const http = (method, url, data, header, config) => {
       params: data
     }).then(response => (checkResponse(response))).catch(res => {
       if (res === undefined) {
-        Router.push('fault')
+        Router.push('500')
         throw new Error('服务器错误')
       } else {
         return Promise.reject(res)
@@ -75,7 +75,7 @@ const http = (method, url, data, header, config) => {
       ...config
     }).then(response => (checkResponse(response))).catch(res => {
       if (res === undefined) {
-        Router.push('fault')
+        Router.push('500')
         throw new Error('服务器错误')
       } else {
         return Promise.reject(res)

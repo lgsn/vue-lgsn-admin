@@ -108,3 +108,9 @@ export function setWebSiteConfig(info) {
   iconDome.href = info.ico
   document.getElementsByTagName('head')[0].appendChild(iconDome)
 }
+
+// 校验合法地址
+
+export const isExternal = (path) => {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}

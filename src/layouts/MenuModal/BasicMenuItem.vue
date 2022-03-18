@@ -3,10 +3,12 @@
 
     <div v-if="!menu.hideMenu">
         <!--一级菜单-->
-        <MenuItem v-if="hasChildrenMenu(menu.children)" :key="menu.name" :index="menu.name">
-            <GIcon class="menu-icon anticon" :icon="menu.meta.icon" />
-            <span>{{ menu.meta.title }}</span>
-        </MenuItem>
+        <BasicMenuLink v-if="hasChildrenMenu(menu.children)" :to="menu.path">
+            <MenuItem :key="menu.name" :index="menu.name">
+                <GIcon class="menu-icon anticon" :icon="menu.meta.icon" />
+                <span>{{ menu.meta.title }}</span>
+            </MenuItem>
+        </BasicMenuLink>
 
         <!--包含子菜单-->
         <Submenu v-else :key="menu.name" :index="menu.name">
@@ -26,12 +28,14 @@
 <script>
 import { Submenu, MenuItem } from 'element-ui'
 import BasicMenuItem from './BasicMenuItem'
+import BasicMenuLink from './BasicMenuLink'
 export default {
     name: "BasicMenuItem",
     components: {
         Submenu,
         MenuItem,
-        BasicMenuItem
+        BasicMenuItem,
+        BasicMenuLink
     },
     props: {
         menu: {

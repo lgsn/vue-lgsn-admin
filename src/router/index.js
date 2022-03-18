@@ -34,13 +34,13 @@ export default new Router({
       component: () => import('@/views/pmsPage/404')
     },
     {
-      path: '/exception',
-      name: 'exception',
-      component: () => import('@/views/pmsPage/403')
+      path: '/401',
+      name: '401',
+      component: () => import('@/views/pmsPage/401')
     },
     {
-      path: '/fault',
-      name: 'fault',
+      path: '/500',
+      name: '500',
       component: () => import('@/views/pmsPage/502')
     }
   ]

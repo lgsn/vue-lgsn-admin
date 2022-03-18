@@ -28,7 +28,7 @@ const actions = {
           name: 'dashboard',
           path: '/dashboard',
           component: '/dashboard/index',
-          layout: true,
+          onAccess: true,
           meta: { title: '首页', 'icon': 'icon-shezhi' },
         },
         {
@@ -53,7 +53,7 @@ const actions = {
         },
         {
           'name': 'link',
-          'path': '/link',
+          'path': 'https://element.eleme.cn/#/zh-CN/component/installation',
           component: '/menu/index',
           meta: { title: '外链菜单', 'icon': 'icon-tongjifenxi' },
         },

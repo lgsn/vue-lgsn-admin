@@ -7,7 +7,6 @@
         mode="vertical"
         :collapse="collapsed"
         :default-active="defaultActive"
-        @select="openView"
     >
 
       <BasicMenuItem v-for="menu in routes" :menu="menu" :key="menu.name" />
