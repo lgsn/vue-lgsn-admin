@@ -5,7 +5,7 @@
  * 路由表
  */
 import { routerFormat } from '@/utils/router'
-import localRoutes from '@/config/config.router.js'
+import localRoutes from '@/config/config.router'
 
 export default {
   namespaced: true,
@@ -36,25 +36,19 @@ export default {
       return new Promise(resolve => {
 
         // 转换路由数据格式
-        let routes = routerFormat([ ...data, ...localRoutes])
-        const layoutRoute = routes.filter(v => !v.layout)
-        const customizeLayout = routes.filter(v => v.layout)
+        let { routes, defaultPath } = routerFormat([ ...data, ...localRoutes], {}, '/401')
+        console.log(defaultPath)
 
         // 默认地址
-        const defaultPage = routes && routes.length ? routes[0] : {}
-        const defaultPath = defaultPage.children.length ? defaultPage.children[0].path : defaultPage.path
 
         commit('setIsGetMenu', { routes, defaultPath, flag: true })
-
         routes = [
           {
             path: '/',
             name: '',
             reject: defaultPath,
-            component: () => import('@/layouts/BasicLayout'),
-            children: layoutRoute
           },
-          ...customizeLayout,
+          ...routes,
           { path: '*', redirect: '/404' }
         ]
 

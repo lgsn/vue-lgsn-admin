@@ -21,7 +21,7 @@
 export default {
   name: 'Exception',
   created() {
-    this.$setWebSite({ title: `403` })
+    this.$setWebSite({ title: `401` })
   }
 }
 </script>

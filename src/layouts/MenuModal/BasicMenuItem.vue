@@ -1,17 +1,18 @@
 <!--菜单-->
 <template>
 
-    <div v-if="!menu.hideMenu">
+    <div v-if="!menu.hideMenu && !menu.onAccess">
+
         <!--一级菜单-->
-        <BasicMenuLink v-if="hasChildrenMenu(menu.children)" :to="menu.path">
-            <MenuItem :key="menu.name" :index="menu.name">
-                <GIcon class="menu-icon anticon" :icon="menu.meta.icon" />
-                <span>{{ menu.meta.title }}</span>
+        <BasicMenuLink v-if="hasChildrenMenu(menu.children, menu) && !menu.showRoot" :to="onlyOneChild.path">
+            <MenuItem :key="onlyOneChild.name" :index="onlyOneChild.name">
+                <GIcon class="menu-icon anticon" :icon="onlyOneChild.meta.icon" />
+                <span>{{ onlyOneChild.meta.title }}</span>
             </MenuItem>
         </BasicMenuLink>
 
         <!--包含子菜单-->
-        <Submenu v-else :key="menu.name" :index="menu.name">
+        <Submenu v-else-if="hasChildrenAccess(menu.children)" :key="menu.name" :index="menu.name">
 
             <template slot="title">
                 <GIcon class="menu-icon anticon" :icon="menu.meta.icon" />
@@ -43,9 +44,18 @@ export default {
             default: () => {}
         }
     },
+    data() {
+        return {
+            onlyOneChild: null
+        }
+    },
     methods: {
-        hasChildrenMenu(menus) {
-            return !menus.length || menus.filter(v => v.hideMenu).length === menus.length
+        hasChildrenMenu(menus, parent) {
+            this.onlyOneChild = menus.length === 1 ? menus[0] : parent
+            return !menus.length || menus.length === 1 || menus.filter(v => v.hideMenu || v.onAccess).length === menus.length
+        },
+        hasChildrenAccess(children) {
+            return children.filter(v => !v.onAccess).length
         }
     }
 }

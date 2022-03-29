@@ -25,17 +25,23 @@ const actions = {
 
       const asyncRouters = [
         {
-          name: 'dashboard',
-          path: '/dashboard',
-          component: '/dashboard/index',
+          name: 'Dashboard',
+          path: '/Dashboard',
           onAccess: true,
-          meta: { title: '首页', 'icon': 'icon-shezhi' },
+          children: [
+            {
+              name: 'dashboard',
+              path: '/dashboard',
+              component: '/dashboard/index',
+              meta: { title: '首页', 'icon': 'icon-shezhi' },
+            }
+          ]
         },
         {
           'name': 'setting',
           'path': '/setting',
-          component: '/menu/index',
           meta: { title: '系统设置', 'icon': 'icon-shezhi' },
+          showRoot: true,
           children: [
             {
               'name': 'menu',
@@ -44,23 +50,26 @@ const actions = {
               meta: { title: '菜单管理', 'icon': 'icon-kuaijiecaidan' }
             },
           ]
-        },
-        {
-          'name': 'business',
-          'path': '/business',
-          component: '/business/index',
-          meta: { title: '业务模版', 'icon': 'icon-tongjifenxi' },
+        }, {
+          name: 'Business',
+          path: '/Business',
+          children: [
+            {
+              'name': 'business',
+              'path': '/business',
+              component: '/business/index',
+              meta: { title: '业务模版', 'icon': 'icon-tongjifenxi' },
+            }
+          ]
         },
         {
           'name': 'link',
-          'path': 'https://element.eleme.cn/#/zh-CN/component/installation',
-          component: '/menu/index',
+          'path': 'https://cn.vuejs.org/index.html',
           meta: { title: '外链菜单', 'icon': 'icon-tongjifenxi' },
         },
         {
           'name': 'components',
           'path': '/components',
-          component: '/menu/index',
           meta: {
             title: '组件', 'icon': 'icon-tongjifenxi',
           },
