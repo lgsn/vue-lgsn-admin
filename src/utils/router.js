@@ -32,7 +32,7 @@ export function routerFormat(asyncRouter, parent = {}, defaultPath) {
       ...route,
       path: `${route.path}`,
       name: route.name,
-      component: route.component && route.component !== 'layout' ? () => import(`@/views${route.component}.vue`) : () => import('@/layouts/BasicLayout'),
+      component: route.component && route.component !== 'layout' ? () => import(`@/views/${route.component}.vue`) : () => import('@/layouts/BasicLayout'),
       meta: {
         ...route.meta,
         activeMenu: route.activeMenu || '',

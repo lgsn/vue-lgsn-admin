@@ -37,7 +37,6 @@ export default {
 
         // 转换路由数据格式
         let { routes, defaultPath } = routerFormat([ ...data, ...localRoutes], {}, '/401')
-        console.log(defaultPath)
 
         // 默认地址
 

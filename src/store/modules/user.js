@@ -32,7 +32,7 @@ const actions = {
             {
               name: 'dashboard',
               path: '/dashboard',
-              component: '/dashboard/index',
+              component: 'dashboard/index',
               meta: { title: '首页', 'icon': 'icon-shezhi' },
             }
           ]
@@ -46,7 +46,7 @@ const actions = {
             {
               'name': 'menu',
               'path': '/menu',
-              component: '/menu/index',
+              component: 'menu/index',
               meta: { title: '菜单管理', 'icon': 'icon-kuaijiecaidan' }
             },
           ]
@@ -57,7 +57,7 @@ const actions = {
             {
               'name': 'business',
               'path': '/business',
-              component: '/business/index',
+              component: 'business/index',
               meta: { title: '业务模版', 'icon': 'icon-tongjifenxi' },
             }
           ]
@@ -75,32 +75,32 @@ const actions = {
           },
           children: [
             {
-              'name': 'avatar', 'path': '/avatar', component: '/menu/index', meta: { title: '头像' }
+              'name': 'avatar', 'path': '/avatar', component: 'menu/index', meta: { title: '头像' }
             },
             {
-              'name': 'Icon', 'path': '/icon', component: '/menu/index', meta: { title: '图标', 'icon': '' }
+              'name': 'Icon', 'path': '/icon', component: 'menu/index', meta: { title: '图标', 'icon': '' }
             },
             {
-              'name': 'editButton', 'path': '/editButton', component: '/menu/index', meta: { title: '操作按钮' }
+              'name': 'editButton', 'path': '/editButton', component: 'menu/index', meta: { title: '操作按钮' }
             },
             {
-              'name': 'pagination', 'path': '/pagination', component: '/menu/index', meta: { title: '分页', 'icon': '' }
+              'name': 'pagination', 'path': '/pagination', component: 'menu/index', meta: { title: '分页', 'icon': '' }
             },
             {
-              'name': 'upload', 'path': '/upload', component: '/menu/index', meta: { title: '上传', 'icon': '' }
+              'name': 'upload', 'path': '/upload', component: 'menu/index', meta: { title: '上传', 'icon': '' }
             },
           ]
         },
         {
           'name': 'copy',
           'path': '/copy',
-          component: '/menu/index',
+          component: 'menu/index',
           meta: { title: '复制', 'icon': 'icon-tongjifenxi' },
         },
         {
           'name': 'permission',
           'path': '/permission',
-          component: '/menu/index',
+          component: 'menu/index',
           meta: { title: '指令权限', 'icon': 'icon-tongjifenxi' },
         },
       ]
