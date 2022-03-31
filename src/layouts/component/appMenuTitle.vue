@@ -1,13 +1,13 @@
 <template>
   <!--左侧顶部 logo 标题-->
   <div class="logo" @click="() => { $router.push(defaultRouter) }">
-    <img v-if="APP_LOGO" class="logo-img" alt="返回应用中心" :src="APP_LOGO">
-    <p v-if="!collapsed" class="logo-name">{{ APP_NAME }}</p>
+    <img v-if="baseInfo.appLogo" class="logo-img" alt="返回应用中心" :src="baseInfo.appLogo">
+    <p v-if="!collapsed" class="logo-name">{{ baseInfo.appName }}</p>
   </div>
 </template>
 
 <script>
-  import { APP_NAME, APP_LOGO } from '@/config/public'
+  import { mapGetters } from 'vuex'
   export default {
     name: 'AppMenuTitle',
     props: {
@@ -20,11 +20,8 @@
         default: false
       }
     },
-    data() {
-      return {
-        APP_NAME,
-        APP_LOGO
-      }
+    computed: {
+      ...mapGetters(['baseInfo'])
     }
   }
 </script>

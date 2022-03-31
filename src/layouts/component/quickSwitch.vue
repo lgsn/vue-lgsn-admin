@@ -7,8 +7,8 @@
       <div class="app-pop-content">
         <div class="content-overflow">
           <div class="app-center" @click="openView({ path: '/' })">
-            <img v-if="APP_LOGO" class="app-icon" :src="APP_LOGO" alt="">
-            <span class="app-logo">{{ APP_NAME }}</span>
+            <img v-if="baseInfo.appLogo" class="app-icon" :src="baseInfo.appLogo" alt="">
+            <span class="app-logo">{{ baseInfo.appName }}</span>
           </div>
           <div v-for="app in quickAppLinks" :key="app.id" class="content-item" @click="openView(app)">
             <img v-if="app.icon" class="icon" :src="app.icon" alt="">
@@ -27,7 +27,7 @@
 <script>
 import { Popover } from 'element-ui'
 import { mapGetters } from 'vuex'
-import { quickAppLinks, APP_NAME, APP_LOGO } from '@/config/public'
+import { quickAppLinks } from '@/config/public'
 export default {
   name: 'AppPop',
   components: {
@@ -35,15 +35,13 @@ export default {
   },
   data() {
     return {
-      APP_NAME,
-      APP_LOGO,
       quickAppLinks,
       visible: false,
       appList: []
     }
   },
   computed: {
-    ...mapGetters(['appBaseConfig'])
+    ...mapGetters(['baseInfo'])
   },
   methods: {
     openView(item) {

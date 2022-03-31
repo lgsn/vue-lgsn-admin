@@ -39,8 +39,8 @@
 
           <!--面包屑-->
           <Breadcrumb class="menu-breadcrumb">
-            <BreadcrumbItem class="menu-breadcrumb-item">{{ APP_NAME }}</BreadcrumbItem>
-            <BreadcrumbItem v-for="(item, index) in breadcrumbList" :key="index" class="menu-breadcrumb-item">{{ item.meta.name }}</BreadcrumbItem>
+            <BreadcrumbItem class="menu-breadcrumb-item">{{ baseInfo.appName }}</BreadcrumbItem>
+            <BreadcrumbItem v-for="(item, index) in breadcrumbList" :key="index" class="menu-breadcrumb-item">{{ item.meta.title }}</BreadcrumbItem>
           </Breadcrumb>
 
         </div>
@@ -65,7 +65,6 @@
   import quickSwitch from '../component/quickSwitch'
   import appMenuTitle from '../component/appMenuTitle'
   import avatarCom from '../component/avatarCom'
-  import { APP_NAME } from '@/config/public'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -82,7 +81,6 @@
     },
     data() {
       return {
-        APP_NAME,
         collapsed: false,
         collapsedFooter: false,
         breadcrumbList: [],
@@ -92,7 +90,7 @@
       }
     },
     computed: {
-      ...mapGetters(['userInfo'])
+      ...mapGetters(['userInfo', 'baseInfo'])
     },
     watch: {
       $route(route) {
@@ -111,7 +109,7 @@
       // 初始化面包屑导航
       initBreadcrumb() {
         this.defaultPathUrl = this.$route.matched[0].path
-        this.breadcrumbList = this.$route.matched.filter(v => v.meta && v.meta.name)
+        this.breadcrumbList = this.$route.matched.filter(v => v.meta && v.meta.title)
       },
       // 初始化历史标签
       initTag() {

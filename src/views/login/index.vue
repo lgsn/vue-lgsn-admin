@@ -11,7 +11,7 @@
 
       <div class="login-model">
 
-        <p class="global-title">{{ APP_NAME }}</p>
+        <p class="global-title">{{ baseInfo.appName }}</p>
 
         <el-form ref="loginForm" :model="loginForm" :rules="rules">
 
@@ -78,13 +78,12 @@
 
 <script>
   import { validationPhone } from '@/utils/validationRules'
-  import { APP_NAME } from '@/config/public'
+  import { mapGetters } from 'vuex'
   import Cookie from 'js-cookie'
   export default {
     name: 'Login',
     data() {
       return {
-        APP_NAME,
         loginIcon01: 'translateY(-50%)',
         loginIcon03: 'translateY(-50%)',
         componentName: 'loginMethods',
@@ -107,7 +106,10 @@
       }
     },
     created() {
-      this.$setWebSite({ title: APP_NAME })
+      this.$setWebSite({ title: this.baseInfo.appName })
+    },
+    computed: {
+      ...mapGetters(['baseInfo'])
     },
     methods: {
       // 移动背景图
