@@ -6,6 +6,7 @@
     :visible.sync="show"
     append-to-body
     center
+    @close="close"
     @closed="handleCancel"
   >
     <el-form ref="editorPwd" class="editor-pwd-form" :model="pwdConfig" :rules="rules" label-width="auto" label-suffix=":">
@@ -46,7 +47,7 @@
     </el-form>
 
     <span slot="footer">
-      <el-button @click="() => { $emit('update:visible', false) }">取 消</el-button>
+      <el-button @click="close">取 消</el-button>
       <el-button type="primary" v-loading="confirmLoading" @click="handleOk">保 存</el-button>
     </span>
 
@@ -55,6 +56,7 @@
 
 <script>
 import { Dialog } from 'element-ui'
+import { mapGetters } from 'vuex'
 export default {
   name: 'EditorPwd',
   components: {
@@ -67,12 +69,13 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['isShowEditorPwd']),
     show: {
       get() {
-        return this.visible
+        return this.isShowEditorPwd
       },
       set(value) {
-        this.$emit('update:visible', value)
+        return value
       }
     }
   },
@@ -108,8 +111,11 @@ export default {
         }
       })
     },
+    close() {
+      this.$store.dispatch('baseInfo/editPwd', false)
+    },
     handleCancel() {
-      this.$emit('update:visible', false)
+      this.$refs.editorPwd.resetFields()
     },
     // 校验密码是否一致
     isPwdConsistent(rule, value, callback) {

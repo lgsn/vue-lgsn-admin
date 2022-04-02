@@ -6,7 +6,7 @@
  * http 封装好的Axios
  */
 
-// import http from '../utils/axios'
+// import http from '../utils/request'
 
 // 退出登录
 export const logout = () => {

@@ -30,7 +30,7 @@
         <!--右侧操作栏-->
         <div class="layout-head-right">
           <quickSwitch />
-          <avatarCom :size="26" :info="userInfo" />
+          <avatarCom />
         </div>
 
         <div class="layout-head-info">
@@ -90,7 +90,7 @@
       }
     },
     computed: {
-      ...mapGetters(['userInfo', 'baseInfo'])
+      ...mapGetters(['baseInfo'])
     },
     watch: {
       $route(route) {

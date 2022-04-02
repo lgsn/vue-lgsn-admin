@@ -10,5 +10,7 @@ export default {
   defaultPath: state => state.permission.defaultPath,
   directivePer: state => state.permission.directivePer,
   routeRightsMap: state => state.permission.routeRightsMap,
-  baseInfo: state => state.baseInfo.baseInfo
+  baseInfo: state => state.baseInfo.baseInfo,
+  quickAppLinks: state => state.baseInfo.quickAppLinks,
+  isShowEditorPwd: state => state.baseInfo.isShowEditorPwd,
 }

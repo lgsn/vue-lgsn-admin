@@ -46,7 +46,7 @@
       }
     },
     created() {
-      this.defaultActive = this.$route.name
+      this.defaultActive = this.$route.meta.activeMenu || this.$route.name
     },
     methods: {
       openView(routeName) {

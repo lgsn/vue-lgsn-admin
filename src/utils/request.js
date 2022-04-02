@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import Router from '../router'
 import store from '@/store'
+import Cookies from 'js-cookie'
 
 // 公用前缀
 const baseURL = '/'
@@ -12,26 +13,20 @@ axios.interceptors.response.use(response => {
   return Promise.reject()
 })
 
-// 校验返回参数
+// 响应拦截器
 function checkResponse(response) {
   // 校验HTTP 状态
   if (response && ([200, 304, 400].includes(Number(response.status)))) {
     const code = response.data.code
-    if (code === '000') {
+    if (code === 0) {
       return response.data
-    } else if (code === '102') {
+    } else if (code === 401) {
       Message.error('登录失效, 请重新登录')
       store.dispatch('clearTokenCookie').then(() => {
         Router.replace({ path: '/login' })
       })
       return Promise.reject(response.data)
-    } else if (code === '10001') {
-      Message.error('账户已禁用')
-      store.dispatch('clearTokenCookie').then(() => {
-        Router.replace({ path: '/login' })
-      })
-      return Promise.reject(response.data)
-    } else if (response.data instanceof Blob) {
+    } else if (response.data instanceof Blob || Array.isArray(response.data)) {
       return response
     } else {
       Message.error(response.data.msg)
@@ -46,42 +41,28 @@ function checkResponse(response) {
 
 const http = (method, url, data, header, config) => {
   const request = {
-    method: '',
     url,
     baseURL,
     headers: {
+      token: Cookies.get('token') || '',
       ...header
     },
     timeout: 60000
   }
-  if (method === 'GET') {
-    return axios({
-      ...request,
-      method: 'get',
-      params: data
-    }).then(response => (checkResponse(response))).catch(res => {
-      if (res === undefined) {
-        Router.push('500')
-        throw new Error('服务器错误')
-      } else {
-        return Promise.reject(res)
-      }
-    })
-  } else {
-    return axios({
-      ...request,
-      method: 'post',
-      data: data,
-      ...config
-    }).then(response => (checkResponse(response))).catch(res => {
-      if (res === undefined) {
-        Router.push('500')
-        throw new Error('服务器错误')
-      } else {
-        return Promise.reject(res)
-      }
-    })
-  }
+  return axios({
+    ...request,
+    method: method,
+    data: method === 'post' ? data : {},
+    params: method === 'get' ? data : {},
+    ...config
+  }).then(response => (checkResponse(response))).catch(res => {
+    if (res === undefined) {
+      Router.push('fault')
+      throw new Error('服务器错误')
+    } else {
+      return Promise.reject(res)
+    }
+  })
 }
 
 export default http

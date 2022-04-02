@@ -9,21 +9,21 @@
         <div class="avatar-com-header">
 
           <GAvatar
-              v-model="info.avatarImg"
+              v-model="userInfo.avatarImg"
               :read-only="true"
               :size="38"
               @click="visible = true"
           >
-            <span v-if="!info.avatarImg && info.userName">
-              {{ info.userName.substr(0, 1) }}
+            <span v-if="!userInfo.avatarImg && userInfo.userName">
+              {{ userInfo.userName.substr(0, 1) }}
             </span>
 
           </GAvatar>
 
-          <span class="user-name">{{ info.userName }}</span>
+          <span class="user-name">{{ userInfo.userName }}</span>
         </div>
         <ul>
-          <li @click="() => { isEditorPwd = true; close() }">
+          <li @click="editPwd">
             <GIcon icon="icon-bianji"></GIcon>
             <span>修改密码</span>
           </li>
@@ -36,22 +36,22 @@
 
       <div slot="reference" class="shw-avatar">
         <GAvatar
-          v-model="info.avatarImg"
+          v-model="userInfo.avatarImg"
           :read-only="true"
           @click="visible = true"
         >
-          <span v-if="!info.avatarImg && info.userName">
-            {{ info.userName.substr(0, 1) }}
+          <span v-if="!userInfo.avatarImg && userInfo.userName">
+            {{ userInfo.userName.substr(0, 1) }}
           </span>
         </GAvatar>
-        <span>{{ info.userName }}</span>
+        <span>{{ userInfo.userName }}</span>
         <GIcon class="show-avatar-icon" :class="{ 'show-avatar-icon-down': visible }" icon="icon-xiajiantou" />
       </div>
 
     </Popover>
 
     <!--修改密码-->
-    <editorPwd :visible.sync="isEditorPwd" />
+    <editorPwd />
 
   </div>
 </template>
@@ -60,6 +60,7 @@
   import { Popover } from 'element-ui'
   import GAvatar from '@/components/GAvatar'
   import editorPwd from './editorPwd'
+  import { mapGetters } from 'vuex'
   export default {
     name: 'AvatarCom',
     components: {
@@ -67,19 +68,11 @@
       GAvatar,
       editorPwd
     },
-    props: {
-      info: {
-        type: Object,
-        default: () => {}
-      },
-      size: {
-        type: Number,
-        default: 36
-      }
+    computed: {
+      ...mapGetters(['userInfo'])
     },
     data() {
       return {
-        isEditorPwd: false,
         visible: false
       }
     },
@@ -88,6 +81,12 @@
       logOut() {
         this.$store.dispatch('clearTokenCookie').then(() => {
           this.$router.replace({ path: '/login' })
+        })
+      },
+
+      editPwd() {
+        this.$store.dispatch('baseInfo/editPwd', true).then(() => {
+          this.close()
         })
       },
 
