@@ -7,12 +7,12 @@
 
 <script>
 export default {
-  name: 'GIcon',
+  name: "GIcon",
   props: {
     icon: {
       type: String,
-      default: ''
-    }
-  }
-}
+      default: "",
+    },
+  },
+};
 </script>

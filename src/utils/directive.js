@@ -11,7 +11,7 @@ import store from '@/store'
  * 复制
  */
 Vue.directive('copy', {
-  bind: function(el) {
+  bind: function (el) {
     const copyValue = el.innerText
     el.innerHTML = `
       <div class="g-copy" id="GCopy">
@@ -22,31 +22,41 @@ Vue.directive('copy', {
         </svg>
       </div>
     `
-    el.addEventListener('click', function(el) {
-      if (el.target.tagName === 'svg') {
-        const input = document.createElement('input')
-        document.body.appendChild(input)
-        input.setAttribute('value', copyValue)
-        input.select()
-        if (document.execCommand('copy')) {
-          document.execCommand('copy')
-        }
-        Vue.prototype.$message.success('复制成功')
-        document.body.removeChild(input)
+    el.addEventListener('click', function () {
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+      input.setAttribute('value', copyValue)
+      input.select()
+      if (document.execCommand('copy')) {
+        document.execCommand('copy')
       }
+      Vue.prototype.$message.success('复制成功')
+      document.body.removeChild(input)
     })
   },
-  unbind: function(el) {
+  unbind: function (el) {
     document.removeEventListener('click', el.__vueClickOutside__)
     delete el.__vueClickOutside__
   }
 })
 
+Vue.prototype.$copy = function (value) {
+  const input = document.createElement('input')
+  document.body.appendChild(input)
+  input.setAttribute('value', value)
+  input.select()
+  if (document.execCommand('copy')) {
+    document.execCommand('copy')
+  }
+  Vue.prototype.$message.success('复制成功')
+  document.body.removeChild(input)
+}
+
 /**
  * 权限按钮
  */
 Vue.directive('rights', {
-  inserted: function(el, binding) {
+  inserted: function (el, binding) {
     if (!store.getters.directivePer.get(binding.value)) {
       el.parentNode.removeChild(el)
     }

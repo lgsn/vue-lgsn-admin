@@ -16,18 +16,16 @@ export default {
     directivePer: new Map(),
     // 默认路由地址
     defaultPath: '',
-    // 路由权限表
-    routeRightsMap: new Map(),
     isGetMenu: false
   },
   mutations: {
-    setRouteRightsMap: (state, routes) => {
-      state.routeRightsMap = routes
-    },
     setIsGetMenu: (state, data) => {
       state.routes = data.routes
       state.defaultPath = data.defaultPath
       state.isGetMenu = data.flag
+    },
+    setDirectivePer: (state, data) => {
+      state.directivePer = data
     }
   },
   actions: {
@@ -36,7 +34,7 @@ export default {
       return new Promise(resolve => {
 
         // 转换路由数据格式
-        let { routes, defaultPath } = routerFormat([ ...data, ...localRoutes], {}, '/401')
+        let { routes, defaultPath } = routerFormat([...data, ...localRoutes], {}, '/401')
 
         // 默认地址
 
@@ -50,6 +48,13 @@ export default {
           ...routes,
           { path: '*', redirect: '/404' }
         ]
+
+        // 权限
+        const mock = new Map()
+        mock.set('edit', true)
+        // mock.set('delete', true)
+
+        commit('setDirectivePer', mock)
 
         resolve(routes)
       })

@@ -1,0 +1,177 @@
+{
+  "id": "3226564",
+  "name": "BW-goods",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "688071",
+      "name": "复制 页面",
+      "font_class": "fuzhiyemian",
+      "unicode": "e772",
+      "unicode_decimal": 59250
+    },
+    {
+      "icon_id": "5093354",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "408327",
+      "name": "快捷菜单",
+      "font_class": "kuaijiecaidan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "788009",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "6263352",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "26850192",
+      "name": "暂停",
+      "font_class": "Pause",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "7425",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "423642",
+      "name": "恢复",
+      "font_class": "huifu",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "8084581",
+      "name": "执行",
+      "font_class": "zhihang",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "11520420",
+      "name": "编辑",
+      "font_class": "bianji1",
+      "unicode": "e75d",
+      "unicode_decimal": 59229
+    },
+    {
+      "icon_id": "12184898",
+      "name": "删除",
+      "font_class": "shanchu1",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "27253672",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "4175511",
+      "name": "下箭头",
+      "font_class": "xiajiantou",
+      "unicode": "eb6d",
+      "unicode_decimal": 60269
+    },
+    {
+      "icon_id": "4175512",
+      "name": "上箭头",
+      "font_class": "shangjiantou",
+      "unicode": "eb6e",
+      "unicode_decimal": 60270
+    },
+    {
+      "icon_id": "2938271",
+      "name": "账号登录",
+      "font_class": "wodeyongchexuanzhong",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "6429420",
+      "name": "统计分析",
+      "font_class": "tongjifenxi",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "6966936",
+      "name": "首页应用中心",
+      "font_class": "shouyeyingyongzhongxin",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "9623690",
+      "name": "密码登录",
+      "font_class": "mimadenglu",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "11891856",
+      "name": "application",
+      "font_class": "application",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "12310090",
+      "name": "logo_google",
+      "font_class": "logo_google",
+      "unicode": "e85a",
+      "unicode_decimal": 59482
+    },
+    {
+      "icon_id": "15778188",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "17671906",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "11556685",
+      "name": "菜单收起",
+      "font_class": "caidanshouqi",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "11556695",
+      "name": "菜单展开",
+      "font_class": "caidanzhankai",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    }
+  ]
+}
