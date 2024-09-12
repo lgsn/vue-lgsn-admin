@@ -83,7 +83,7 @@ npm run serve
 
 ``` danger 警告
 
-在运行 `简约版` 插件时，它会检查并删除目录下的一些文件，以确保 `vue-cli-plugin-lgsnadmin` <br/>
+在运行 `简约版` 插件时，它会检查并删除目录下的一些文件，以确保 `vue-cli-plugin-lgsnadmin`
 可以正常运行。所以你需要确认是在全新项目下安装/运行 `简约版`
 
 ```
