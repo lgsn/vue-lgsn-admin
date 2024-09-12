@@ -81,11 +81,11 @@ npm run serve
 
 在一些特殊情况下，你可能只需要 `vue-lgsn-admin` 框架本身，并不需要其他 例如典型模版、业务组件等等框架本身外的功能。安装简约版是一个很好的选择，它只集成了框架以及框架本身所依赖的功能。不需要你额外的手动去删除沉余代码。查阅[简约版功能](https://lgsn.github.io/vue-lgsn-admin-docs/guide/#简约版功能)
 
-::: danger 警告
+``` danger 警告
 
 在运行 `简约版` 插件时，它会检查并删除目录下的一些文件，以确保 `el-element-pro` 可以正常运行。所以你需要确认是在全新项目下安装/运行 `简约版`
 
-:::
+```
 
 ```bash javascript:no-line-numbers
 # 创建项目 vue-cli v3.x 创建项目的同时也会安装依赖
