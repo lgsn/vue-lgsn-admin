@@ -105,7 +105,7 @@ vue invoke vue-cli-plugin-lgsnadmin
 npm run serve
 ```
 
-选择安装任何一个版本，启动项目后会自动打开浏览器访问 http://localhost:8081， 你看到下面的页面就代表操作成功了。
+选择安装任何一个版本，启动项目后会自动打开浏览器访问(或手动输入项目URL)， 你看到下面的页面就代表操作成功了。
 
 ![Image](https://lgsn.github.io/vue-lgsn-admin-docs/assets/login.39a1ddab.jpg)
 
