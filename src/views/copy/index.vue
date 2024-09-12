@@ -1,6 +1,6 @@
 <template>
   <GViewCard>
-    <div type="primary" v-copy="`文字 - 888888`">点击文字复制</div>
+    <div class="copy-text" type="primary" v-copy="'文字复制'">点击文字复制</div>
 
     <el-button @click="copy" type="primary">点击按钮复制</el-button>
   </GViewCard>
@@ -17,11 +17,16 @@ export default {
   },
   methods: {
     copy() {
-      this.$copy("按钮 - 888888");
+      this.$copy("按钮 - 复制");
     },
   },
 };
 </script>
 
 <style lang="scss">
+.copy-text{
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 </style>

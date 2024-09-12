@@ -1,9 +1,3 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 3:53 下午
- * 常用工具
- */
 const RouteView = {
   name: 'RouteView',
   render: (h) => h('router-view')

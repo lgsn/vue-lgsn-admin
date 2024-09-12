@@ -1,4 +1,4 @@
-# vue-element-pro
+# vue-lgsn-admin
 
 ## Project setup
 ```

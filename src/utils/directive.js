@@ -1,38 +1,40 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 3:40 下午
- * 指令
- */
+
 import Vue from 'vue'
 import store from '@/store'
 
 /**
  * 复制
  */
-Vue.directive('copy', {
-  bind: function (el) {
-    const copyValue = el.innerText
-    el.innerHTML = `
+
+const copyNode = value => {
+    if (!value) {
+      return `<span></span>`;
+    }
+    return `
       <div class="g-copy" id="GCopy">
-        <span title=${copyValue} class='overflow-text'>${copyValue}</span>
+        <span title=${value} class='overflow-text'>${value}</span>
         <svg class="icon" aria-hidden="true">
           <title>单击复制</title>
           <use xlink:href="#icon-fuzhiyemian" />
         </svg>
       </div>
     `
-    el.addEventListener('click', function () {
-      const input = document.createElement('input')
-      document.body.appendChild(input)
-      input.setAttribute('value', copyValue)
-      input.select()
-      if (document.execCommand('copy')) {
-        document.execCommand('copy')
-      }
-      Vue.prototype.$message.success('复制成功')
-      document.body.removeChild(input)
-    })
+}
+const copyEvents = (binding) => {
+  const input = document.createElement("input");
+  document.body.appendChild(input);
+  input.setAttribute("value", binding.value);
+  input.select();
+  if (document.execCommand("copy")) {
+    document.execCommand("copy");
+  }
+  Vue.prototype.$message.success('复制成功')
+  document.body.removeChild(input);
+}
+Vue.directive('copy', {
+  bind: function (el, binding) {
+    el.innerHTML = copyNode(el.innerHTML || binding.value)
+    el.onclick = () => copyEvents(binding)
   },
   unbind: function (el) {
     document.removeEventListener('click', el.__vueClickOutside__)
@@ -41,15 +43,7 @@ Vue.directive('copy', {
 })
 
 Vue.prototype.$copy = function (value) {
-  const input = document.createElement('input')
-  document.body.appendChild(input)
-  input.setAttribute('value', value)
-  input.select()
-  if (document.execCommand('copy')) {
-    document.execCommand('copy')
-  }
-  Vue.prototype.$message.success('复制成功')
-  document.body.removeChild(input)
+  copyEvents({value: value})
 }
 
 /**

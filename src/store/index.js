@@ -1,9 +1,4 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 6:42 下午
- * vuex 数据中心
- */
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'

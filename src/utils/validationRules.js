@@ -1,9 +1,3 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 11:04 上午
- * 常用校验规则
- */
 export const validationPhone = value => {
   if (!value) return false
 

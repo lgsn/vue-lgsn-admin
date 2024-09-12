@@ -1,9 +1,3 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 7:38 下午
- * Element-ui 常用组件
- */
 import Vue from 'vue'
 import GIcon from '@/components/GIcon'
 

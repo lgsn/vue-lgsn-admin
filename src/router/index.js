@@ -1,9 +1,4 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 17:40 下午
- * 路由配置
-*/
+
 import Vue from 'vue'
 import Router from 'vue-router'
 

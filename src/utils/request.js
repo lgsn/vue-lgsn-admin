@@ -34,7 +34,7 @@ function checkResponse(response) {
     }
     // 校验业务CODE
   } else {
-    Message.error('服务睡着了啦，快去叫醒它吧。')
+    Message.error('服务器睡着了啦，快去叫醒它吧。')
     return Promise.reject()
   }
 }

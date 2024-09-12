@@ -1,9 +1,3 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 6:09 下午
- * 路由表
- */
 import { routerFormat } from '@/utils/router'
 import localRoutes from '@/config/config.router'
 

@@ -1,9 +1,4 @@
-/**
- * @Description:
- * @author Chen Jing
- * @date 8:22 下午
- * 统一暴露getters
- */
+
 
 export default {
   routes: state => state.permission.routes,
