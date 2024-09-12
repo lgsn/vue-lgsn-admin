@@ -1,5 +1,6 @@
 {
   "name": "vue-lgsn-admin",
+  "description": "vue-lgsn-admin",
   "author": "开关 <gltwork@163.com>",
   "version": "0.1.0",
   "private": true,

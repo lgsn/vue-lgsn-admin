@@ -44,8 +44,8 @@
 
     <!--操作-->
     <template v-slot:operation>
-      <GBtnIcon icon="icon-bianji1" />
-      <GBtnIcon icon="icon-shanchu1" />
+      <GBtnIcon icon="edit"  @click="edit"/>
+      <GBtnIcon icon="deleted" />
     </template>
   </GTableData>
 </template>
@@ -137,6 +137,9 @@ export default {
     selectionChangeHandle(val) {
       this.dataListSelections = val;
     },
+    edit() {
+      this.$router.push('/businessDetail')
+    }
   },
 };
 </script>

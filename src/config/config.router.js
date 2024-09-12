@@ -5,10 +5,10 @@ export default [
         hideMenu: true,
         children: [
             {
-                name: 'menuDetail',
-                path: '/menuDetail',
-                component: 'business/menuDetail',
-                activeMenu: 'menu',
+                name: 'businessDetail',
+                path: '/businessDetail',
+                component: 'business/businessDetail',
+                activeMenu: 'business',
                 meta: { title: '详情页', 'icon': 'icon-tongjifenxi' },
             }
         ]

@@ -1,4 +1,6 @@
-# [vue-lgsn-admin] (https://lgsn.github.io/vue-lgsn-admin-docs/guide/preface.html)
+# vue-lgsn-admin
+
+[![Image](https://img.shields.io/badge/2.6.11-vue-brightgreen)]()&nbsp; &nbsp; [![Image](https://img.shields.io/badge/2.15.1-element--ui-brightgreen)]()
 
 ## Ant Design Pro
  `Ant Design Pro` 作为新的框架，会带来因技术栈的改变，需要团队成员学习和熟悉新的UI框架。难免会提高开发成本。在用户体验感上，我们使用了全新的UI框架，可能会给用户带来体验和熟悉感的问题。这对我们来说成本和风险较高。
@@ -10,7 +12,7 @@
  `Vue-element-admin` 看起来是一个不错的选择，但它本身集成了太多的功能，这会对我们造成代码沉余。即便它提供给了 vue-admin-template基础版本，但基础版在针对公司现有结构下的兼容性不是很好，其修改量无疑是重新开发。
 
 ## vue-lgsn-admin
- `vue-lgsn-admin` 因此诞生。它结合两者优点，同时针对公司现有业务场景开发出定制化功能，例如业务模版、上传、图标库、权限指令等等。即便日后需要重构或替换，成本也相对较低。做为新的框架它可以团队成员灵感知。无需额外的学习即可上手。UI框架同样为 Element-ui 对业务开发没有任何影响。
+ `[vue-lgsn-admin]((https://lgsn.github.io/vue-lgsn-admin-docs/))` 因此诞生。它结合两者优点，同时针对公司现有业务场景开发出定制化功能，例如业务模版、上传、图标库、权限指令等等。即便日后需要重构或替换，成本也相对较低。做为新的框架它可以团队成员灵感知。无需额外的学习即可上手。UI框架同样为 Element-ui 对业务开发没有任何影响。
 
 简而言之 `vue-lgsn-admin` 的出现，主要为统一公司管理后台框架、公用组件、公用方法。让团队成员开箱即用，无需删减框架内多余模版，多次封装公用方法、业务组件等等等...
 

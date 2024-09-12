@@ -1,6 +1,6 @@
 <template>
   <GViewCard>
-    <div class="dashboard">Dome</div>
+    <div class="dashboard">首页</div>
   </GViewCard>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">详情页</div>
+  <div class="dashboard">业务详情页（编辑业务数据）</div>
 </template>
 
 <script>
