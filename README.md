@@ -1,6 +1,6 @@
 # vue-lgsn-admin
 
-[vue-lgsn-admin 文档](https://lgsn.github.io/vue-lgsn-admin-docs/))
+[vue-lgsn-admin 文档](https://lgsn.github.io/vue-lgsn-admin-docs/)
 
 [![Image](https://img.shields.io/badge/2.6.11-vue-brightgreen)]()&nbsp; &nbsp; [![Image](https://img.shields.io/badge/2.15.1-element--ui-brightgreen)]()
 
