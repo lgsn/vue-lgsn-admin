@@ -95,10 +95,10 @@ vue create vue-project
 cd vue-project
 
 # 安装插件
-npm i --save-dev vue-lgsn-admin-plugin
+npm i --save-dev vue-cli-plugin-lgsnadmin
 
 # 运行插件
-vue invoke vue-lgsn-admin-plugin
+vue invoke vue-cli-plugin-lgsnadmin
 
 # 本地开发 启动项目
 npm run serve
